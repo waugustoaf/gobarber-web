@@ -65,7 +65,8 @@ export const AuthProvider: React.FC = ({ children }) => {
           user: data.user,
           signOut,
         } as AuthContextData
-      }>
+      }
+    >
       {children}
     </AuthContext.Provider>
   );

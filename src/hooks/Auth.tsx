@@ -36,8 +36,14 @@ export const AuthProvider: React.FC = ({ children }) => {
     const user = localStorage.getItem('GoBarber:user');
 
     if (token && user) {
-      api.defaults.headers.authorization = `Bearer ${token}`;
-      return { token, user: JSON.parse(user) };
+      try {
+        api.defaults.headers.authorization = `Bearer ${token}`;
+        return { token, user: JSON.parse(user) };
+      } catch (err) {
+        localStorage.removeItem('GoBarber:token');
+        localStorage.removeItem('GoBarber:user');
+        history.push('/');
+      }
     }
     return {} as AuthState;
   });

@@ -146,7 +146,14 @@ const Profile: React.FC = () => {
           onSubmit={handleSubmit}
         >
           <AvatarInput>
-            <img src={user.avatar_url.replace(' ', '%20')} alt={user.name} />
+            <img
+              src={
+                user.avatar_url
+                  ? user.avatar_url.replace(' ', '%20')
+                  : 'https://login.vivaldi.net/profile/avatar/default-avatar.png'
+              }
+              alt={user.name}
+            />
             <label htmlFor="avatar">
               <FiCamera />
               <input type="file" id="avatar" onChange={handleAvatarChange} />

@@ -19,7 +19,7 @@ describe('Auth hook', () => {
       token: 'token-123',
     });
 
-    const { result, waitForNextUpdate } = renderHook(() => useAuth(), {
+    const { result } = renderHook(() => useAuth(), {
       wrapper: AuthProvider,
     });
 
@@ -27,8 +27,6 @@ describe('Auth hook', () => {
       email: 'johndoe@example.com',
       password: '123456',
     });
-
-    await waitForNextUpdate();
 
     expect(result.current.user.email).toEqual('johndoe@example.com');
     expect(mockedHistoryPush).toHaveBeenCalledWith('/dashboard');
